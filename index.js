@@ -292,9 +292,12 @@ const audit = {
     ];
 
     const result = restaurants.reduce((restsByType, restaurant) => {
-      restsByType[restaurant.cuisine] = restaurants.forEach(restaurant => {
-        // filter by which ones match
+      restaurants.forEach(restaurant => {
+        if (!restsByType[restaurant.cuisine]) {
+          restsByType[restaurant.cuisine] = [];
+        }
       })
+      restsByType[restaurant.cuisine].push(restaurant.name)
       return restsByType
     }, {})
 
